@@ -45,7 +45,7 @@ export const Principles: React.FC = () => {
   };
 
   return (
-    <section className='relative w-full bg-white py-16 md:py-24 overflow-hidden'>
+    <section id='principles' className='relative w-full bg-white py-16 md:py-24 overflow-hidden'>
       {/* Decorative diamonds */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
         {[...Array(5)].map((_, i) => (
@@ -79,8 +79,11 @@ export const Principles: React.FC = () => {
           viewport={{ once: true, margin: '-100px' }}
           className='text-center mb-12 md:mb-16'
         >
-          <h2 className='text-4xl md:text-5xl font-bold text-neutral-900 mb-4'>Our Principles</h2>
-          <p className='text-xl text-neutral-600 max-w-2xl mx-auto'>
+          <span className='inline-block text-blue-600 font-semibold text-sm tracking-wider uppercase mb-3'>
+            Why Choose Us
+          </span>
+          <h2 className='text-4xl md:text-5xl font-bold text-neutral-900 mb-4 font-display'>Our Principles</h2>
+          <p className='text-lg text-neutral-600 max-w-2xl mx-auto'>
             Diamond Pressure Washing is run by a hardworking young entrepreneur who takes pride
             in delivering straightforward, reliable service.
           </p>

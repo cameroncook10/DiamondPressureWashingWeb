@@ -49,9 +49,9 @@
   background: #0284c7;
 }
 
-/* Smooth transitions */
-* {
-  @apply transition-colors duration-200;
+/* Font display */
+.font-display {
+  font-family: 'Sora', system-ui, sans-serif;
 }
 
 /* Glass morphism effect */
