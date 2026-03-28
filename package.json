@@ -1,0 +1,50 @@
+{
+  "name": "diamond-pressure-washing-rva",
+  "version": "0.1.0",
+  "description": "Diamond Pressure Washing RVA - Professional pressure washing services",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "react-native-web start",
+    "build": "react-native-web build",
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-native": "^0.73.0",
+    "react-native-web": "^0.19.0",
+    "framer-motion": "^10.16.0",
+    "lucide-react": "^0.263.0",
+    "tailwindcss": "^3.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "@babel/preset-react": "^7.22.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "prettier": "^3.0.0",
+    "babel-plugin-react-native-web": "^0.19.0",
+    "typescript": "^5.1.0"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "arrowParens": "always"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "babel-plugin-react-native-web"
+    ]
+  }
+}
