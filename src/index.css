@@ -11,10 +11,10 @@
   }
 
   body {
-    @apply bg-slate-950 text-white font-sans antialiased;
+    @apply bg-white text-slate-800 font-sans antialiased;
   }
 
-  /* Smooth transitions on interactive elements only */
+  /* Smooth transitions on interactive elements */
   a {
     @apply transition-colors duration-300 ease-out;
   }
@@ -31,21 +31,21 @@
 
   /* Selection styling */
   ::selection {
-    background: rgba(14, 165, 233, 0.35);
-    color: #ffffff;
+    background: rgba(16, 185, 129, 0.25);
+    color: #0f172a;
   }
 
   ::-moz-selection {
-    background: rgba(14, 165, 233, 0.35);
-    color: #ffffff;
+    background: rgba(16, 185, 129, 0.25);
+    color: #0f172a;
   }
 
   /* Focus ring styles for form inputs */
   input:focus,
   textarea:focus,
   select:focus {
-    @apply outline-none ring-2 ring-primary-500/50 border-primary-500/60;
-    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15), 0 0 20px rgba(14, 165, 233, 0.1);
+    @apply outline-none ring-2 ring-emerald-500/40 border-emerald-500;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
   }
 }
 
@@ -57,23 +57,22 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.8);
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(14, 165, 233, 0.5);
+  background: #94a3b8;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(14, 165, 233, 0.8);
-  box-shadow: 0 0 8px rgba(14, 165, 233, 0.6);
+  background: #64748b;
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(14, 165, 233, 0.5) rgba(15, 23, 42, 0.8);
+  scrollbar-color: #94a3b8 #f1f5f9;
 }
 
 /* ============================================================
@@ -82,212 +81,124 @@
 @layer components {
 
   /* ----------------------------------------------------------
-     Glass Morphism
+     Section Styles
      ---------------------------------------------------------- */
-  .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .section-dark {
+    @apply bg-slate-900 text-white;
   }
 
-  .glass-strong {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .section-light {
+    @apply bg-white text-slate-800;
   }
 
-  .glass-light {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    color: #0f172a;
+  .section-alt {
+    background-color: #f8fafc;
+    @apply text-slate-800;
   }
 
   /* ----------------------------------------------------------
-     Gradient Text
-     ---------------------------------------------------------- */
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #38bdf8, #0ea5e9, #0284c7);
-  }
-
-  .gradient-text-light {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #e0f2fe, #7dd3fc, #38bdf8);
-  }
-
-  .gradient-text-premium {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #ffffff, #bae6fd, #0ea5e9, #bae6fd, #ffffff);
-    background-size: 200% auto;
-  }
-
-  /* ----------------------------------------------------------
-     Glow Utilities
-     ---------------------------------------------------------- */
-  .text-glow {
-    text-shadow: 0 0 10px rgba(14, 165, 233, 0.5),
-                 0 0 30px rgba(14, 165, 233, 0.25),
-                 0 0 60px rgba(14, 165, 233, 0.1);
-  }
-
-  .text-glow-strong {
-    text-shadow: 0 0 10px rgba(14, 165, 233, 0.7),
-                 0 0 40px rgba(14, 165, 233, 0.4),
-                 0 0 80px rgba(14, 165, 233, 0.2);
-  }
-
-  .text-glow-white {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
-                 0 0 30px rgba(255, 255, 255, 0.15);
-  }
-
-  .box-glow {
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.4),
-                0 0 40px rgba(14, 165, 233, 0.1);
-  }
-
-  .box-glow-lg {
-    box-shadow: 0 0 30px rgba(14, 165, 233, 0.5),
-                0 0 60px rgba(14, 165, 233, 0.2);
-  }
-
-  /* ----------------------------------------------------------
-     Animated Gradient Border
-     ---------------------------------------------------------- */
-  .gradient-border {
-    position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 1rem;
-    overflow: hidden;
-  }
-
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      rgba(14, 165, 233, 0.6),
-      rgba(56, 189, 248, 0.2),
-      rgba(14, 165, 233, 0.05),
-      rgba(56, 189, 248, 0.2),
-      rgba(14, 165, 233, 0.6)
-    );
-    background-size: 300% 300%;
-    animation: gradientShift 6s ease infinite;
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  /* ----------------------------------------------------------
-     Premium Buttons
+     Buttons
      ---------------------------------------------------------- */
   .btn-primary {
-    @apply relative font-bold py-3 px-8 rounded-xl text-white overflow-hidden;
-    background: linear-gradient(135deg, #0ea5e9, #0284c7);
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3),
-                0 4px 15px rgba(0, 0, 0, 0.2);
+    @apply inline-flex items-center justify-center font-semibold py-3 px-8 rounded-lg text-white;
+    background-color: #10b981;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
   }
 
   .btn-primary:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 0 30px rgba(14, 165, 233, 0.5),
-                0 8px 25px rgba(0, 0, 0, 0.3);
+    background-color: #059669;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3), 0 2px 4px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
   }
 
   .btn-primary:active {
-    transform: translateY(0) scale(0.98);
-  }
-
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.2) 0%,
-      rgba(255, 255, 255, 0) 50%
-    );
-    pointer-events: none;
+    background-color: #047857;
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .btn-secondary {
-    @apply relative font-bold py-3 px-8 rounded-xl text-white overflow-hidden;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    @apply inline-flex items-center justify-center font-semibold py-3 px-8 rounded-lg;
+    background-color: #ffffff;
+    color: #10b981;
+    border: 2px solid #10b981;
     transition: all 0.3s ease;
   }
 
   .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(14, 165, 233, 0.5);
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.2),
-                0 8px 25px rgba(0, 0, 0, 0.2);
+    background-color: #10b981;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+    transform: translateY(-1px);
   }
 
   .btn-secondary:active {
+    background-color: #059669;
     transform: translateY(0);
   }
 
-  .btn-glass {
-    @apply relative font-semibold py-3 px-8 rounded-xl text-white overflow-hidden;
-    background: rgba(14, 165, 233, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(14, 165, 233, 0.25);
+  .btn-outline {
+    @apply inline-flex items-center justify-center font-semibold py-3 px-8 rounded-lg;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
     transition: all 0.3s ease;
   }
 
-  .btn-glass:hover {
-    background: rgba(14, 165, 233, 0.2);
-    border-color: rgba(14, 165, 233, 0.5);
-    box-shadow: 0 0 25px rgba(14, 165, 233, 0.3);
-    transform: translateY(-2px);
+  .btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    transform: translateY(-1px);
   }
 
-  .btn-glass:active {
+  .btn-outline:active {
+    background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(0);
   }
 
   /* ----------------------------------------------------------
-     Diamond Pattern (updated for dark theme)
+     Card Styles
+     ---------------------------------------------------------- */
+  .card {
+    @apply bg-white rounded-xl;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .card-flat {
+    @apply bg-white rounded-xl border border-slate-200;
+    transition: all 0.3s ease;
+  }
+
+  .card-flat:hover {
+    border-color: #10b981;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ----------------------------------------------------------
+     Diamond Pattern (subtle, professional)
      ---------------------------------------------------------- */
   .diamond-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,10 90,50 50,90 10,50' fill='none' stroke='%230ea5e9' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,10 90,50 50,90 10,50' fill='none' stroke='%2310b981' stroke-width='0.5' opacity='0.06'/%3E%3C/svg%3E");
     background-size: 200px 200px;
   }
 
   /* ----------------------------------------------------------
-     Premium Link Hover Effects
+     Link Styles
      ---------------------------------------------------------- */
-  .link-glow {
+  .link-hover {
     @apply relative;
     transition: color 0.3s ease;
   }
 
-  .link-glow:hover {
-    color: #38bdf8;
-    text-shadow: 0 0 8px rgba(14, 165, 233, 0.4);
+  .link-hover:hover {
+    color: #10b981;
   }
 
   .link-underline {
@@ -301,8 +212,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #0ea5e9, #38bdf8);
-    box-shadow: 0 0 8px rgba(14, 165, 233, 0.4);
+    background-color: #10b981;
     transition: width 0.3s ease;
   }
 
@@ -311,45 +221,29 @@
   }
 
   /* ----------------------------------------------------------
-     Animated Background Utilities
+     Badge / Highlight
      ---------------------------------------------------------- */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #059669;
   }
 
-  .animate-float-delayed {
-    animation: float 6s ease-in-out 3s infinite;
+  .badge-amber {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    background-color: rgba(245, 158, 11, 0.1);
+    color: #d97706;
   }
 
-  .animate-pulse-glow {
-    animation: pulseGlow 3s ease-in-out infinite;
+  /* ----------------------------------------------------------
+     Divider
+     ---------------------------------------------------------- */
+  .divider {
+    @apply border-t border-slate-200;
   }
 
-  @keyframes pulseGlow {
-    0%, 100% {
-      opacity: 0.4;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-  }
-
-  .shimmer {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.08) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2.5s linear infinite;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+  .divider-dark {
+    @apply border-t border-slate-700;
   }
 }
 
@@ -357,7 +251,7 @@
    UTILITIES LAYER
    ============================================================ */
 @layer utilities {
-  /* Entrance animation helper — elements start invisible */
+  /* Entrance animation helper - elements start invisible */
   .animate-on-enter {
     opacity: 0;
     transform: translateY(30px);
@@ -376,6 +270,20 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Fade entrance variant */
+  .animate-on-enter-fade {
+    opacity: 0;
+  }
+
+  .animate-on-enter-fade.is-visible {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 }
 
