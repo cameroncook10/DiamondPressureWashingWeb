@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Home, TreePine, Building2, Droplets, Sun, Warehouse } from 'lucide-react';
-import { Diamond } from './Diamond';
 
 const services = [
   {
@@ -10,20 +9,23 @@ const services = [
     description:
       'Remove oil stains, dirt, and grime buildup. We bring your concrete and pavers back to looking brand new.',
     color: 'from-blue-500 to-blue-600',
+    glowColor: 'shadow-blue-500/20',
   },
   {
     icon: TreePine,
     title: 'Patio & Deck Restoration',
     description:
-      'Algae, mildew, and weathering don\'t stand a chance. Restore your outdoor living space to its full potential.',
+      "Algae, mildew, and weathering don't stand a chance. Restore your outdoor living space to its full potential.",
     color: 'from-emerald-500 to-emerald-600',
+    glowColor: 'shadow-emerald-500/20',
   },
   {
     icon: Building2,
     title: 'House Siding',
     description:
-      'Vinyl, brick, stucco — we handle it all. Safe, thorough cleaning that protects your home\'s exterior.',
+      "Vinyl, brick, stucco — we handle it all. Safe, thorough cleaning that protects your home's exterior.",
     color: 'from-sky-500 to-sky-600',
+    glowColor: 'shadow-sky-500/20',
   },
   {
     icon: Droplets,
@@ -31,6 +33,7 @@ const services = [
     description:
       'Crystal clear windows and clean gutters that actually work. Keep your home looking sharp and functioning right.',
     color: 'from-cyan-500 to-cyan-600',
+    glowColor: 'shadow-cyan-500/20',
   },
   {
     icon: Sun,
@@ -38,6 +41,7 @@ const services = [
     description:
       'Gentle, low-pressure cleaning that removes black streaks and moss without damaging your shingles.',
     color: 'from-amber-500 to-amber-600',
+    glowColor: 'shadow-amber-500/20',
   },
   {
     icon: Warehouse,
@@ -45,73 +49,131 @@ const services = [
     description:
       'Storefronts, parking lots, and building exteriors. Make a great first impression on your customers.',
     color: 'from-indigo-500 to-indigo-600',
+    glowColor: 'shadow-indigo-500/20',
   },
 ];
+
+/* Floating particle component */
+const FloatingParticle: React.FC<{ delay: number; x: string; y: string; size: number }> = ({
+  delay,
+  x,
+  y,
+  size,
+}) => (
+  <motion.div
+    className='absolute rounded-full bg-blue-400/30'
+    style={{ left: x, top: y, width: size, height: size }}
+    animate={{
+      y: [0, -30, 0],
+      x: [0, 15, -10, 0],
+      opacity: [0.2, 0.6, 0.2],
+      scale: [1, 1.3, 1],
+    }}
+    transition={{
+      duration: 6 + delay,
+      repeat: Infinity,
+      ease: 'easeInOut',
+      delay,
+    }}
+  />
+);
 
 export const Services: React.FC = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 },
+      transition: { staggerChildren: 0.12 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
+      scale: 1,
+      transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   };
 
+  // Generate particles
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    x: `${(i * 17) % 100}%`,
+    y: `${(i * 23 + 10) % 100}%`,
+    size: 2 + (i % 4),
+    delay: i * 0.4,
+  }));
+
   return (
-    <section id='services' className='relative w-full bg-neutral-50 py-16 md:py-24 overflow-hidden'>
-      {/* Background decoration */}
+    <section
+      id='services'
+      className='relative w-full bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 py-20 md:py-32 overflow-hidden'
+    >
+      {/* Floating particles background */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            className='absolute text-blue-100 opacity-20'
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20 + i * 5, repeat: Infinity, ease: 'linear' }}
-            style={{
-              left: `${i * 30}%`,
-              top: `${(i * 35) % 100}%`,
-            }}
-          >
-            <Diamond size='lg' animated={false} />
-          </motion.div>
+        {particles.map((p) => (
+          <FloatingParticle key={p.id} delay={p.delay} x={p.x} y={p.y} size={p.size} />
         ))}
       </div>
 
-      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      {/* Ambient glow orbs */}
+      <div className='absolute inset-0 overflow-hidden pointer-events-none'>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className='absolute w-96 h-96 rounded-full bg-blue-600/10 blur-3xl'
+          style={{ left: '-5%', top: '10%' }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className='absolute w-80 h-80 rounded-full bg-indigo-500/10 blur-3xl'
+          style={{ right: '-5%', bottom: '15%' }}
+          animate={{ scale: [1.1, 0.9, 1.1], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className='absolute w-64 h-64 rounded-full bg-cyan-500/8 blur-3xl'
+          style={{ left: '40%', top: '50%' }}
+          animate={{ scale: [0.9, 1.15, 0.9], opacity: [0.15, 0.35, 0.15] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+
+      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-80px' }}
-          className='text-center mb-12 md:mb-16'
+          className='text-center mb-14 md:mb-20'
         >
-          <span className='inline-block text-blue-600 font-semibold text-sm tracking-wider uppercase mb-3'>
+          <motion.span
+            className='inline-block text-blue-400 font-semibold text-sm tracking-widest uppercase mb-4 px-4 py-1.5 rounded-full bg-blue-400/10 border border-blue-400/20 backdrop-blur-sm'
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
             What We Do
-          </span>
-          <h2 className='text-4xl md:text-5xl font-bold text-neutral-900 mb-4 font-display'>
+          </motion.span>
+          <h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 font-display'>
             Our Services
           </h2>
-          <p className='text-lg text-neutral-600 max-w-2xl mx-auto'>
+          <p className='text-lg md:text-xl text-blue-100/70 max-w-2xl mx-auto leading-relaxed'>
             From residential driveways to commercial storefronts, we've got the equipment and
             expertise to handle any job.
           </p>
         </motion.div>
 
+        {/* Service cards grid */}
         <motion.div
           variants={containerVariants}
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, margin: '-80px' }}
-          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+          viewport={{ once: true, margin: '-60px' }}
+          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'
         >
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -119,19 +181,57 @@ export const Services: React.FC = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -4 }}
-                className='bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-neutral-100 group'
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3, ease: 'easeOut' },
+                }}
+                className='group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-7 transition-all duration-500 hover:bg-white/[0.08] hover:border-blue-400/30 hover:shadow-[0_8px_40px_rgba(59,130,246,0.15)] cursor-default'
               >
-                <div
-                  className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} mb-4 shadow-sm`}
-                >
-                  <Icon className='text-white' size={22} />
+                {/* Card inner glow on hover */}
+                <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 pointer-events-none' />
+
+                {/* Icon in glass circle */}
+                <div className='relative mb-5'>
+                  <motion.div
+                    className={`inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br ${service.color} shadow-lg ${service.glowColor}`}
+                    animate={{
+                      boxShadow: [
+                        '0 0 15px rgba(59,130,246,0.15)',
+                        '0 0 25px rgba(59,130,246,0.25)',
+                        '0 0 15px rgba(59,130,246,0.15)',
+                      ],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      delay: index * 0.3,
+                    }}
+                  >
+                    <Icon className='text-white' size={24} />
+                  </motion.div>
+                  {/* Subtle ring pulse */}
+                  <motion.div
+                    className='absolute inset-0 w-14 h-14 rounded-full border border-white/20'
+                    animate={{
+                      scale: [1, 1.4, 1.4],
+                      opacity: [0.4, 0, 0],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'easeOut',
+                      delay: index * 0.3,
+                    }}
+                  />
                 </div>
 
-                <h3 className='text-lg font-bold text-neutral-900 mb-2 group-hover:text-blue-600 transition-colors'>
+                <h3 className='relative text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300'>
                   {service.title}
                 </h3>
-                <p className='text-sm text-neutral-600 leading-relaxed'>{service.description}</p>
+                <p className='relative text-sm text-blue-100/60 leading-relaxed'>
+                  {service.description}
+                </p>
               </motion.div>
             );
           })}
@@ -139,22 +239,30 @@ export const Services: React.FC = () => {
 
         {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.4, duration: 0.7 }}
           viewport={{ once: true }}
-          className='text-center mt-12'
+          className='text-center mt-14 md:mt-20'
         >
-          <p className='text-neutral-600 mb-4'>
+          <p className='text-blue-100/50 mb-5 text-lg'>
             Not sure what you need? We'll come take a look — no charge.
           </p>
-          <a
+          <motion.a
             href='#contact'
-            className='inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition'
+            className='inline-flex items-center gap-2 text-blue-400 font-semibold text-lg transition-all duration-300 px-6 py-3 rounded-full bg-blue-400/10 border border-blue-400/20 backdrop-blur-sm hover:bg-blue-400/20 hover:border-blue-400/40 hover:shadow-[0_0_30px_rgba(96,165,250,0.2)]'
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
           >
             Request a free estimate
-            <span aria-hidden='true'>&rarr;</span>
-          </a>
+            <motion.span
+              aria-hidden='true'
+              animate={{ x: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              &rarr;
+            </motion.span>
+          </motion.a>
         </motion.div>
       </div>
     </section>
