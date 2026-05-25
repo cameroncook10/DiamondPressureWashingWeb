@@ -95,18 +95,13 @@ export const Services: React.FC = () => {
               {/* Constant base gradient — always-on legibility for the title */}
               <div className='absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent' />
 
-              {/* Glassmorphic reveal panel — slides up on hover */}
-              <div className='absolute inset-x-3 bottom-3 translate-y-[55%] group-hover:translate-y-0 transition-transform duration-500 ease-out'>
+              {/* Glassmorphic reveal panel — expands on hover */}
+              <div className='absolute inset-x-3 bottom-3 translate-y-[58%] group-hover:translate-y-0 transition-transform duration-500 ease-out'>
                 <div className='rounded-xl bg-white/12 backdrop-blur-xl border border-white/25 p-4 shadow-lg'>
-                  <div className='flex items-center justify-between gap-2'>
-                    <h3 className='text-white text-base md:text-lg font-bold leading-tight'>
-                      {service.title}
-                    </h3>
-                    <span className='inline-flex shrink-0 items-center justify-center w-7 h-7 rounded-full bg-sky-500/90 text-white transition-transform duration-300 group-hover:translate-x-0.5'>
-                      <ArrowRight size={14} />
-                    </span>
-                  </div>
-                  <p className='mt-2 text-sm text-white/80 leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
+                  <h3 className='text-white text-base md:text-lg font-bold leading-tight'>
+                    {service.title}
+                  </h3>
+                  <p className='mt-2 text-sm text-white/85 leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
                     {service.blurb}
                   </p>
                 </div>
