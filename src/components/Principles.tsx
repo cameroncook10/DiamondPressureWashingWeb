@@ -13,7 +13,7 @@ const principles = [
     icon: Clock,
     title: 'Reliable & On-Time',
     description:
-      'Young and motivated, we show up when we say we will. No excuses, no delays. Just solid, professional service you can depend on.',
+      'We show up when we say we will. No excuses, no delays. Just solid, professional service you can depend on.',
   },
   {
     icon: Award,
@@ -25,24 +25,38 @@ const principles = [
 
 export const Principles: React.FC = () => {
   return (
-    <section id='principles' className='w-full bg-slate-900 py-20 md:py-28'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+    <section
+      id='principles'
+      className='relative w-full overflow-hidden bg-gradient-to-b from-white via-sky-50 to-white py-20 md:py-28'
+    >
+      {/* Faint blue grid + radial glow for texture */}
+      <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(125,211,252,0.25),_transparent_55%)] pointer-events-none' />
+      <div
+        className='absolute inset-0 opacity-[0.06] pointer-events-none'
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(14,165,233,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.6) 1px, transparent 1px)',
+          backgroundSize: '56px 56px',
+        }}
+      />
+
+      <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section header */}
         <div className='text-center mb-14'>
-          <span className='text-emerald-400 font-semibold text-sm tracking-widest uppercase'>
+          <span className='text-sky-600 font-semibold text-sm tracking-widest uppercase'>
             WHY CHOOSE US
           </span>
-          <h2 className='text-4xl md:text-5xl font-bold text-white mt-3 mb-4 font-display'>
+          <h2 className='text-4xl md:text-5xl font-bold text-slate-900 mt-3 mb-4 font-display'>
             Our Principles
           </h2>
-          <p className='text-lg text-slate-400 max-w-2xl mx-auto'>
-            Diamond Pressure Washing is run by a hardworking young entrepreneur who takes pride in
-            delivering straightforward, reliable service.
+          <p className='text-lg text-slate-600 max-w-2xl mx-auto'>
+            Owner-operated. Every job overseen personally. Straightforward,
+            reliable service across Greater Richmond.
           </p>
         </div>
 
         {/* Principle cards */}
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
           {principles.map((principle, index) => {
             const Icon = principle.icon;
             return (
@@ -52,15 +66,18 @@ export const Principles: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 viewport={{ once: true, margin: '-60px' }}
-                className='bg-slate-800/50 border border-slate-800 rounded-xl p-8'
+                className='group relative bg-white border border-sky-100 rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-shadow'
               >
+                {/* Soft top gradient accent */}
+                <div className='absolute top-0 inset-x-0 h-1 rounded-t-2xl bg-gradient-to-r from-sky-300 via-cyan-300 to-sky-200' />
+
                 {/* Icon */}
-                <div className='inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500/10 mb-6'>
-                  <Icon className='text-emerald-400' size={26} />
+                <div className='inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-100 to-cyan-50 ring-1 ring-sky-200/60 mb-6 transition-transform duration-300 group-hover:scale-105'>
+                  <Icon className='text-sky-600' size={26} />
                 </div>
 
-                <h3 className='text-xl font-bold text-white mb-3'>{principle.title}</h3>
-                <p className='text-slate-400 leading-relaxed'>{principle.description}</p>
+                <h3 className='text-xl font-bold text-slate-900 mb-3'>{principle.title}</h3>
+                <p className='text-slate-600 leading-relaxed'>{principle.description}</p>
               </motion.div>
             );
           })}
@@ -72,12 +89,10 @@ export const Principles: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className='mt-16 text-center text-slate-400 max-w-3xl mx-auto leading-relaxed'
+          className='mt-16 text-center text-slate-600 max-w-3xl mx-auto leading-relaxed'
         >
           When you choose Diamond Pressure Washing, you're not just getting a clean driveway or
-          fresh-looking patio — you're getting people who actually care about doing the job right. We
-          show up on time, treat your property with respect, and make sure you're happy before we
-          call it a day.
+          fresh-looking patio — you're getting people who actually care about doing the job right.
         </motion.p>
       </div>
     </section>

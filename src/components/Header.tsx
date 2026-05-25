@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Droplets, Phone, Menu, X } from 'lucide-react';
+import { ShinyButton } from './ui/shiny-button';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -43,7 +44,7 @@ export const Header: React.FC = () => {
             <Droplets
               size={28}
               className={`transition-colors duration-300 ${
-                scrolled ? 'text-emerald-600' : 'text-emerald-400'
+                scrolled ? 'text-sky-600' : 'text-sky-400'
               }`}
             />
             <span
@@ -63,7 +64,7 @@ export const Header: React.FC = () => {
                 href={link.href}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
                   scrolled
-                    ? 'text-slate-600 hover:text-emerald-600 hover:bg-emerald-50'
+                    ? 'text-slate-600 hover:text-sky-600 hover:bg-sky-50'
                     : 'text-white/90 hover:text-white hover:bg-white/10'
                 }`}
               >
@@ -78,19 +79,23 @@ export const Header: React.FC = () => {
               href='tel:804-426-5663'
               className={`flex items-center gap-2 text-sm font-semibold transition-colors duration-300 ${
                 scrolled
-                  ? 'text-slate-700 hover:text-emerald-600'
+                  ? 'text-slate-700 hover:text-sky-600'
                   : 'text-white/90 hover:text-white'
               }`}
             >
               <Phone size={16} />
               <span>804-426-5663</span>
             </a>
-            <a
-              href='#contact'
-              className='inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm py-2.5 px-5 rounded-lg shadow-sm hover:shadow-md transition-all duration-200'
+            <ShinyButton
+              onClick={() => (window.location.href = '#contact')}
+              className={`text-xs py-2.5 px-5 ${
+                scrolled
+                  ? 'bg-sky-600 text-white shadow-sm hover:shadow-md'
+                  : 'bg-sky-500/90 text-white shadow-md backdrop-blur-md'
+              }`}
             >
               Free Quote
-            </a>
+            </ShinyButton>
           </div>
 
           {/* Mobile menu button */}
@@ -121,7 +126,7 @@ export const Header: React.FC = () => {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className='block px-4 py-3 text-base font-medium text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors duration-200'
+                className='block px-4 py-3 text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors duration-200'
               >
                 {link.label}
               </a>
@@ -129,18 +134,20 @@ export const Header: React.FC = () => {
             <div className='pt-3 border-t border-slate-100 space-y-2'>
               <a
                 href='tel:804-426-5663'
-                className='flex items-center gap-3 px-4 py-3 text-emerald-600 font-semibold rounded-lg hover:bg-emerald-50 transition-colors duration-200'
+                className='flex items-center gap-3 px-4 py-3 text-sky-600 font-semibold rounded-lg hover:bg-sky-50 transition-colors duration-200'
               >
                 <Phone size={18} />
                 <span>804-426-5663</span>
               </a>
-              <a
-                href='#contact'
-                onClick={() => setMobileOpen(false)}
-                className='flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg shadow-sm transition-all duration-200'
+              <ShinyButton
+                onClick={() => {
+                  setMobileOpen(false);
+                  window.location.href = '#contact';
+                }}
+                className='w-full justify-center bg-sky-600 text-white py-3 px-6'
               >
                 Get a Free Quote
-              </a>
+              </ShinyButton>
             </div>
           </div>
         </div>

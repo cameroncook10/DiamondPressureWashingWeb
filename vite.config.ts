@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/DiamondPressureWashingWeb/',
+  base: '/',
   resolve: {
     alias: {
       'react-native': 'react-native-web',

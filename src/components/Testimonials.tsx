@@ -35,7 +35,7 @@ export const Testimonials: React.FC = () => {
           viewport={{ once: true, margin: '-80px' }}
           className='text-center mb-12 md:mb-16'
         >
-          <span className='inline-block text-emerald-600 font-semibold text-sm tracking-wider uppercase mb-3'>
+          <span className='inline-block text-sky-600 font-semibold text-sm tracking-wider uppercase mb-3'>
             Testimonials
           </span>
           <h2 className='text-4xl md:text-5xl font-bold text-slate-900 mb-4 font-display'>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, Send, CheckCircle } from 'lucide-react';
+import { ShinyButton } from './ui/shiny-button';
 
 export const CTA: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
@@ -18,7 +19,7 @@ export const CTA: React.FC = () => {
   };
 
   return (
-    <section id='contact' className='w-full bg-emerald-700 py-16 md:py-24'>
+    <section id='contact' className='w-full bg-sky-700 py-16 md:py-24'>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +34,7 @@ export const CTA: React.FC = () => {
               Ready to Get Your Place Looking Sharp?
             </h2>
 
-            <p className='text-lg text-emerald-100 leading-relaxed'>
+            <p className='text-lg text-sky-100 leading-relaxed'>
               No sales pitch. No hidden fees. Just honest work and solid results. Fill out the form
               or give us a call — we'll get back to you fast.
             </p>
@@ -48,7 +49,7 @@ export const CTA: React.FC = () => {
                   <Phone size={22} />
                 </div>
                 <div>
-                  <p className='text-sm text-emerald-200'>Call us now</p>
+                  <p className='text-sm text-sky-200'>Call us now</p>
                   <p className='text-lg font-bold'>804-426-5663</p>
                 </div>
               </a>
@@ -62,7 +63,7 @@ export const CTA: React.FC = () => {
                   <Mail size={22} />
                 </div>
                 <div>
-                  <p className='text-sm text-emerald-200'>Email us</p>
+                  <p className='text-sm text-sky-200'>Email us</p>
                   <p className='text-sm font-bold'>diamondpressureservicesrva@gmail.com</p>
                 </div>
               </a>
@@ -73,9 +74,9 @@ export const CTA: React.FC = () => {
               {['Free Estimates', 'Professional Service', 'Fully Insured', 'Satisfaction Guaranteed'].map((item) => (
                 <div
                   key={item}
-                  className='flex items-center gap-2 text-emerald-200 text-sm'
+                  className='flex items-center gap-2 text-sky-200 text-sm'
                 >
-                  <CheckCircle size={16} className='text-emerald-300 flex-shrink-0' />
+                  <CheckCircle size={16} className='text-sky-300 flex-shrink-0' />
                   {item}
                 </div>
               ))}
@@ -105,7 +106,7 @@ export const CTA: React.FC = () => {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className='w-full px-4 py-2.5 rounded-lg bg-white border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all duration-200 text-slate-900 placeholder-slate-400'
+                  className='w-full px-4 py-2.5 rounded-lg bg-white border border-slate-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all duration-200 text-slate-900 placeholder-slate-400'
                   placeholder='Your name'
                 />
               </div>
@@ -121,7 +122,7 @@ export const CTA: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className='w-full px-4 py-2.5 rounded-lg bg-white border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all duration-200 text-slate-900 placeholder-slate-400'
+                    className='w-full px-4 py-2.5 rounded-lg bg-white border border-slate-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all duration-200 text-slate-900 placeholder-slate-400'
                     placeholder='you@email.com'
                   />
                 </div>
@@ -134,7 +135,7 @@ export const CTA: React.FC = () => {
                     type='tel'
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className='w-full px-4 py-2.5 rounded-lg bg-white border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all duration-200 text-slate-900 placeholder-slate-400'
+                    className='w-full px-4 py-2.5 rounded-lg bg-white border border-slate-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all duration-200 text-slate-900 placeholder-slate-400'
                     placeholder='(804) 000-0000'
                   />
                 </div>
@@ -150,27 +151,27 @@ export const CTA: React.FC = () => {
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className='w-full px-4 py-2.5 rounded-lg bg-white border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all duration-200 resize-none text-slate-900 placeholder-slate-400'
+                  className='w-full px-4 py-2.5 rounded-lg bg-white border border-slate-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all duration-200 resize-none text-slate-900 placeholder-slate-400'
                   placeholder='Tell us about your project...'
                 />
               </div>
 
-              <button
+              <ShinyButton
                 type='submit'
-                className='w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200'
+                className='w-full bg-sky-600 text-white py-3 px-6 text-base'
               >
                 {submitted ? (
-                  <>
+                  <span className='flex items-center justify-center gap-2'>
                     <CheckCircle size={18} />
                     Opening Email Client...
-                  </>
+                  </span>
                 ) : (
-                  <>
+                  <span className='flex items-center justify-center gap-2'>
                     <Send size={18} />
                     Send Request
-                  </>
+                  </span>
                 )}
-              </button>
+              </ShinyButton>
 
               <p className='text-xs text-slate-400 text-center'>
                 We respect your privacy. No spam, ever.
